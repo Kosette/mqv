@@ -1,0 +1,33 @@
+name: release
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make package
+        run: |
+          rm -recurse -force .git*
+          gci -recurse -path .gitkeep | remove-item -force 
+          7z.exe a mqv.7z ./*
+
+      - name: Set tag
+        shell: bash
+        run: echo TAG_NAME=mqv-$(date --rfc-3339='date') >> $GITHUB_ENV
+
+      - name: Upload Github Assets
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            *.7z
+          tag_name: ${{ env.TAG_NAME }}
