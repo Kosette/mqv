@@ -309,7 +309,7 @@ function create_default_menu_items()
 				{title = t('Key bindings'), value = 'script-binding uosc/keybinds'},
 				{title = t('Show in directory'), value = 'script-binding uosc/show-in-directory'},
 				{title = t('Open config folder'), value = 'script-binding uosc/open-config-directory'},
-				{title = t('Update uosc'), value = 'script-binding uosc/update'},
+				-- {title = t('Update uosc'), value = 'script-binding uosc/update'},
 			},
 		},
 		{title = t('Quit'), value = 'quit'},
