@@ -55,7 +55,7 @@ function Updater:init()
 
 	if state.platform == 'windows' then
 		local url = 'https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1'
-		-- update({'powershell', '-NoProfile', '-Command', 'irm ' .. url .. ' | iex'})
+		update({'powershell', '-NoProfile', '-Command', 'irm ' .. url .. ' | iex'})
 	else
 		-- Detect missing dependencies. We can't just let the process run and
 		-- report an error, as on snap packages there's no error. Everything
@@ -84,7 +84,7 @@ function Updater:init()
 			handle_result(false, {stderr = stderr})
 		else
 			local url = 'https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh'
-			-- update({'/bin/bash', '-c', 'source <(curl -fsSL ' .. url .. ')'})
+			update({'/bin/bash', '-c', 'source <(curl -fsSL ' .. url .. ')'})
 		end
 	end
 end
